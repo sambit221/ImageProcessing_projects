@@ -1,17 +1,21 @@
-import cv2
+# Setting camera parameters
 
+import  cv2
     # Here '0' representing camera number, can be 2,3 for 2nd and 3rd camera respectively
     # cap stores all the video captured
-cap=cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
+print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    # xvid is fourcc code, and fourcc is a class
-fourcc= cv2.VideoWriter_fourcc(*'XVID')
+    # we are setting the frame size .
+    # 3 is for frame height
+    # 4 is for frame width
+    # we can give any resolution to it but it will give only the available resolution for the camera
+cap.set(3, 3000)
+cap.set(4, 3000)
 
-    # 1st argument is name of output
-    # 2nd one is output from fourcc variable(that includes fourcc class)
-    # 3rd argument is resolutions per second i.e, 20.0 here i have given
-    # 4th argument is a tuple that includes dimensions of the window
-out=cv2.VideoWriter('output.avi', fourcc, 20.0, (640,480))
+print(cap.get(3))
+print(cap.get(4))
 
     # we are running loop definitely
 while (cap.isOpened()):
@@ -20,6 +24,20 @@ while (cap.isOpened()):
         # ret will be true if frame is true
     ret, frame =cap.read()
     if ret == True:
+            # font choosen here is FONT_HERSHEY_SIMPLEX an stored in font
+        font = cv2.FONT_HERSHEY_SIMPLEX
+
+
+            # To print frame of the window on video streaming window un comment this
+            # text stores texts to be printed on the video window
+        text = 'Width :'+ str(cap.get(3)) + ' Height : '+ str(cap.get(4))
+
+            # -----for printing date and time on the video window----------------------
+            # datet = str(datetime.datetime.now())
+
+            # frame variable which streams video over-written with text
+        frame= cv2.putText(frame, text, (10,50), font, 2, (0, 255, 255), 4, cv2.LINE_AA)
+
             # to make image grey from coloured image execute following
             # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             # and replace the following frame attribute with gray
@@ -29,7 +47,6 @@ while (cap.isOpened()):
             # Name of the window is frame and the window is reading the 'frame' variable i.e, coloured
             # for coloured video execute the following
             # cv2.imshow ('Stream', frame)
-        out.write(frame)
         cv2.imshow('Stream', frame)
 
             # ord reads the key pressed, if q is pressed window will quit
@@ -37,11 +54,7 @@ while (cap.isOpened()):
             break
     else:
         break
-    # Here it will print the dimensions of the window
-print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 
     # after capturing video we need to release cache files
 cap.release()
-out.release()
 cv2.destroyAllWindows()

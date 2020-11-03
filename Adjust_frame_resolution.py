@@ -1,3 +1,5 @@
+# customising the frame resolutions
+
 import  cv2
     # Here '0' representing camera number, can be 2,3 for 2nd and 3rd camera respectively
     # cap stores all the video captured

@@ -1,3 +1,5 @@
+# Drawing different shapes on image
+
 import numpy as np
 import cv2
 

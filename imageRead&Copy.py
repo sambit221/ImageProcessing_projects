@@ -1,3 +1,5 @@
+# Reading an image and copying it to another variable
+
 import cv2
 
     # reading an image and storing its matrix data to img

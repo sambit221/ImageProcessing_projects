@@ -1,6 +1,7 @@
-# Adding text to the video
+# Printing name,dimensions,date and time on the video window
 
 import  cv2
+import datetime
     # Here '0' representing camera number, can be 2,3 for 2nd and 3rd camera respectively
     # cap stores all the video captured
 cap = cv2.VideoCapture(0)
@@ -27,22 +28,28 @@ while (cap.isOpened()):
             # font choosen here is FONT_HERSHEY_SIMPLEX an stored in font
         font = cv2.FONT_HERSHEY_SIMPLEX
 
-
-            # To print frame of the window on video streaming window un comment this
-            # text stores texts to be printed on the video window
-        text = 'Width :'+ str(cap.get(3)) + ' Height : '+ str(cap.get(4))
-
             # -----for printing date and time on the video window----------------------
-            # datet = str(datetime.datetime.now())
+        datet = str(datetime.datetime.now())
 
             # frame variable which streams video over-written with text
-        frame= cv2.putText(frame, text, (10,50), font, 2, (0, 255, 255), 4, cv2.LINE_AA)
+        frame= cv2.putText(frame, datet, (10,50), font, 2, (0, 255, 255), 4, cv2.LINE_AA)
 
             # to make image grey from coloured image execute following
             # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             # and replace the following frame attribute with gray
             # as following
             # cv2.imshow ('Stream', gray)
+
+            # To print frame of the window on video streaming window un comment this
+            # text stores texts to be printed on the video window
+        text = 'Width :' + str(cap.get(3)) + ' Height : ' + str(cap.get(4))
+        frame = cv2.putText(frame, text, (10, 200), font, 2, (0, 0, 255), 4, cv2.LINE_AA)
+
+
+
+        name = 'Sambit'
+        frame = cv2.putText(frame, name, (10, 400), font, 2, (255, 0, 0), 5, cv2.LINE_AA)
+
 
             # Name of the window is frame and the window is reading the 'frame' variable i.e, coloured
             # for coloured video execute the following
