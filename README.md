@@ -31,7 +31,7 @@ pip install times
 7. Read image and copy it
 8. mouse events 1
 9. mouse events 2
-10.Setting camera parameters
+10. Setting camera parameters
 ----
 
 ### Steps to follow
